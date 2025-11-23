@@ -1,0 +1,29 @@
+name: Daily Alarm Bot
+
+on:
+  schedule:
+    # 한국 시간 아침 8시 = UTC 23시 (전날)
+    # "0 23 * * *" 이라고 적으면 한국 아침 8시에 울립니다.
+    - cron: '0 23 * * *'
+  workflow_dispatch: # 수동으로 버튼 눌러서 실행할 수 있게 해주는 설정
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 코드 가져오기
+        uses: actions/checkout@v3
+
+      - name: 파이썬 설정
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: 필요한 프로그램 설치
+        run: pip install requests
+
+      - name: 봇 실행
+        env:
+          APP_TOKEN: ${{ secrets.APP_TOKEN }}
+          MY_ID: ${{ secrets.MY_ID }}
+        run: python bot.py
