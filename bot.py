@@ -18,10 +18,16 @@ def send_message():
     # 2. 날짜 계산 (오늘 날짜 - 시작 날짜)
     today = datetime.date.today()
     d_day = (today - START_DATE).days + 1
+    year = today.year
+    end_of_year = date(year, 12, 31)
+    days_left = (end_of_year - today).days # 오늘부터 남은 일수
+    total_days_in_year = (end_of_year - date(year, 1, 1)).days + 1 # 올해의 총 일수
+    day_of_year = (today - date(year, 1, 1)).days + 1 # 오늘이 올해에서 몇 번째 날인지
 
     # 3. 보낼 메시지 내용 (원하는 대로 수정하세요)
     # \n은 '줄바꿈'입니다.
     message_text = f"Lv: {d_day:,} / 36,525 ({round(d_day*100/36525)} %)\n" \
+                   f"Days left : {days_left} (day_of_year, {round(days_left*100/total_days_in_year)} %)\n" \
                    f"Todays left : {2097 - today.year:,}\n" \
 
     # 4. 텔레그램으로 전송
