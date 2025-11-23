@@ -1,9 +1,9 @@
 import os
 import requests
-import datetime
+from datetime import date
 
 # --- [여기만 수정하면 됩니다] ---
-START_DATE = datetime.date(1997, 4, 7) # 목표 시작 날짜 (년, 월, 일)
+START_DATE = date(1997, 4, 7) # 목표 시작 날짜 (년, 월, 일)
 # -----------------------------
 
 def send_message():
@@ -16,7 +16,7 @@ def send_message():
         return
 
     # 2. 날짜 계산 (오늘 날짜 - 시작 날짜)
-    today = datetime.date.today()
+    today = date.today()
     d_day = (today - START_DATE).days + 1
     year = today.year
     end_of_year = date(year, 12, 31)
