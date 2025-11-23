@@ -27,8 +27,8 @@ def send_message():
     # 3. 보낼 메시지 내용 (원하는 대로 수정하세요)
     # \n은 '줄바꿈'입니다.
     message_text = f"Lv: {d_day:,} / 36,525 ({round(d_day*100/36525)}%)\n" \
-                   f"Days left : {days_left} ({day_of_year}, {round(day_of_year*100/total_days_in_year)}%)\n" \
-                   f"Todays left : {2097 - today.year:,}\n" \
+                   f"Days left: {days_left} ({day_of_year}, {round(day_of_year*100/total_days_in_year)}%)\n" \
+                   f"Todays left: {2097 - today.year:,}\n" \
 
     # 4. 텔레그램으로 전송
     url = f"https://api.telegram.org/bot{token}/sendMessage"
