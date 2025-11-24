@@ -1,6 +1,6 @@
 import os
 import requests
-from datetime import date
+from datetime import date, datetime, timedelta
 
 # --- [여기만 수정하면 됩니다] ---
 START_DATE = date(1997, 4, 7) # 목표 시작 날짜 (년, 월, 일)
@@ -16,8 +16,10 @@ def send_message():
         return
 
     # 2. 날짜 계산 (오늘 날짜 - 시작 날짜)
-    today = date.today()
-    d_day = (today - START_DATE).days + 1
+    utc_now = datetime.utcnow() # 서버 시간
+    kst_now = utc_now + timedelta(hours=9) # 한국 시간
+    today = kst_now.date()  # 한국 날짜
+    d_day = (today - START_DATE).days + 1 # 내가 태어난 후 날짜 계산
     year = today.year
     end_of_year = date(year, 12, 31)
     days_left = (end_of_year - today).days # 오늘부터 남은 일수
